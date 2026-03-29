@@ -1,0 +1,192 @@
+:root {
+  font-family: "Segoe UI", sans-serif;
+  color: #201810;
+  background: #fff7e9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 26%),
+    #fff7e9;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1120px, calc(100vw - 36px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 247, 233, 0.9);
+  border-bottom: 1px solid rgba(32, 24, 16, 0.08);
+}
+
+.topbar .wrap,
+.heroGrid,
+.buttonRow,
+.grid3,
+.purchase {
+  display: grid;
+  gap: 20px;
+}
+
+.topbar .wrap {
+  min-height: 76px;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+}
+
+.hero,
+.section {
+  padding: 38px 0;
+}
+
+.heroGrid,
+.purchase {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  margin: 12px 0 16px;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 5.8rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.3rem);
+}
+
+.lead,
+p,
+span {
+  line-height: 1.7;
+  color: #635a51;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primaryButton {
+  background: #111827;
+  color: white;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(32, 24, 16, 0.1);
+}
+
+.mockupStage,
+.card,
+.reviewCard,
+.priceBox {
+  border-radius: 30px;
+  box-shadow: 0 24px 60px rgba(63, 45, 27, 0.12);
+}
+
+.mockupStage {
+  min-height: 430px;
+  position: relative;
+  background: linear-gradient(180deg, #fff1c9 0%, #ffe1bf 100%);
+}
+
+.book,
+.screen {
+  position: absolute;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.book {
+  left: 16%;
+  top: 14%;
+  width: 42%;
+  height: 58%;
+  background: linear-gradient(145deg, #f97316, #fb7185);
+  transform: rotate(-10deg);
+}
+
+.screen {
+  right: 12%;
+  bottom: 14%;
+  width: 52%;
+  height: 46%;
+  background: linear-gradient(145deg, #111827, #334155);
+}
+
+.card,
+.reviewCard,
+.priceBox {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.reviewCard strong,
+.priceBox strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.priceBox strong {
+  font-size: 2rem;
+}
+
+@media (max-width: 900px) {
+  .topbar .wrap,
+  .heroGrid,
+  .grid3,
+  .purchase {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+}

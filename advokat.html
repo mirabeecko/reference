@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lex & Forma | Advokátní kancelář</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --accent: #b89a5d;
+        --bg: #e9edf2;
+        --surface: rgba(10, 27, 52, 0.84);
+        --text: #112033;
+        --muted: #5a6472;
+      }
+      .law-card {
+        background: #0a1b34;
+        color: #f5f1e7;
+      }
+      .law-card p {
+        color: rgba(245, 241, 231, 0.76);
+      }
+    </style>
+  </head>
+  <body class="serif">
+    <header class="site-header">
+      <div class="page-shell">
+        <a class="brand" href="index.html">Lex & Forma</a>
+        <nav class="nav">
+          <a href="#odbornosti">Odbornosti</a>
+          <a href="#tym">Tým</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <a class="cta" href="#kontakt">Nezávazná konzultace</a>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="page-shell hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Právní jistota pro firmy i jednotlivce</span>
+            <h1>Precizní právní servis s důrazem na důvěru a diskrétnost.</h1>
+            <p class="lead">Pomáháme klientům v oblasti obchodního práva, nemovitostí, pracovních vztahů a sporové agendy. Mluvíme srozumitelně a jednáme věcně.</p>
+            <div class="button-row">
+              <a class="cta" href="#kontakt">Kontaktovat kancelář</a>
+              <a class="cta-secondary" href="#odbornosti">Naše odbornosti</a>
+            </div>
+          </div>
+          <div class="visual law-card">
+            <div class="stack" style="padding:32px">
+              <span class="eyebrow">Odbornost</span>
+              <h2>15 let zkušeností</h2>
+              <p>Zastupování před soudy, smluvní dokumentace, due diligence a průběžné právní poradenství.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="odbornosti">
+        <div class="page-shell card-grid">
+          <div class="team-card law-card"><h3>Obchodní právo</h3><p>Zakládání společností, smlouvy, akcionářské dohody, compliance.</p></div>
+          <div class="team-card law-card"><h3>Nemovitosti</h3><p>Revize převodů, úschovy, nájmy, developerské projekty.</p></div>
+          <div class="team-card law-card"><h3>Pracovní právo</h3><p>Smlouvy, interní předpisy, ukončování spoluprací, zastupování ve sporech.</p></div>
+        </div>
+      </section>
+      <section id="tym">
+        <div class="page-shell section-grid">
+          <div class="team-card">
+            <img src="assets/lawyer-team.svg" alt="Tým advokátní kanceláře" />
+          </div>
+          <div class="panel">
+            <h3>Životopis a tým</h3>
+            <p>JUDr. Martin Vacek vede kancelář od roku 2011. Spolu s týmem specializovaných advokátů a účetních poradců poskytuje dlouhodobý servis firmám, startupům i soukromým klientům.</p>
+            <p style="margin-top:14px">GDPR prohlášení: Veškeré údaje z kontaktního formuláře zpracováváme výhradně za účelem odpovědi na poptávku a v souladu s platnými předpisy o ochraně osobních údajů.</p>
+          </div>
+        </div>
+      </section>
+      <section id="kontakt">
+        <div class="page-shell section-grid">
+          <div class="panel">
+            <h3>Kontaktní formulář</h3>
+            <ul class="list">
+              <li><span class="bullet"></span><div>Jméno a společnost</div></li>
+              <li><span class="bullet"></span><div>Email a telefon</div></li>
+              <li><span class="bullet"></span><div>Stručný popis právního problému</div></li>
+            </ul>
+          </div>
+          <div class="map-card">
+            <h3>Adresa kanceláře</h3>
+            <p>Pařížská 21, Praha 1</p>
+            <a class="map-link" href="https://maps.google.com/?q=Parizska+21+Praha"></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="page-shell footer-row">
+        <div><strong>Lex & Forma</strong><p>Po-Pá 8:30-17:30. Schůzky po předchozí domluvě.</p></div>
+        <a class="cta-secondary" href="mailto:info@lexforma.cz">info@lexforma.cz</a>
+      </div>
+    </footer>
+  </body>
+</html>

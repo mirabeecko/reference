@@ -1,0 +1,225 @@
+:root {
+  font-family: Georgia, serif;
+  color: #243128;
+  background: #f1ece4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(70, 98, 78, 0.18), transparent 28%),
+    #f1ece4;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1140px, calc(100vw - 36px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(241, 236, 228, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(36, 49, 40, 0.08);
+}
+
+.topbar .wrap,
+.heroGrid,
+.buttonRow,
+.gallery,
+.twoCol,
+.tagRow,
+.weatherRow,
+.formGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.topbar .wrap {
+  min-height: 78px;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.brand,
+.eyebrow,
+.primaryButton,
+.secondaryButton,
+.tag,
+.inputMock {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.hero,
+.section {
+  padding: 38px 0;
+}
+
+.heroGrid,
+.twoCol {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+h1,
+h2 {
+  margin: 12px 0 16px;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+h1 {
+  font-size: clamp(3.2rem, 9vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+}
+
+.lead,
+p {
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.7;
+  color: #5f695e;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primaryButton {
+  background: #46624e;
+  color: #fff;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(36, 49, 40, 0.1);
+}
+
+.heroScene,
+.card,
+.reservationCard,
+.galleryItem {
+  border-radius: 30px;
+  box-shadow: 0 24px 60px rgba(42, 49, 35, 0.12);
+}
+
+.heroScene {
+  min-height: 460px;
+  background:
+    radial-gradient(circle at 70% 25%, #fff2bc 0 8%, transparent 8%),
+    linear-gradient(180deg, #9cb09e 0 40%, #f6f1e8 40% 100%);
+  position: relative;
+}
+
+.heroScene::before {
+  content: "";
+  position: absolute;
+  inset: auto 16% 12% 16%;
+  height: 44%;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #b28458, #6e4b34);
+}
+
+.card,
+.reservationCard {
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.gallery {
+  grid-template-columns: 1.15fr 1fr 1fr;
+}
+
+.galleryItem {
+  min-height: 280px;
+}
+
+.g1 {
+  background: linear-gradient(145deg, #c8d4c7, #f8f2e8);
+}
+
+.g2 {
+  background: linear-gradient(145deg, #b18a6d, #f5e4d5);
+}
+
+.g3 {
+  background: linear-gradient(145deg, #9fb9ab, #d7ccb7);
+}
+
+.tagRow,
+.weatherRow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tag,
+.inputMock,
+.weatherRow div {
+  border-radius: 18px;
+  background: #f7f2ea;
+  padding: 16px;
+}
+
+.reservationCard {
+  display: grid;
+  gap: 24px;
+}
+
+.formGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .topbar .wrap,
+  .heroGrid,
+  .gallery,
+  .twoCol,
+  .tagRow,
+  .weatherRow,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+}

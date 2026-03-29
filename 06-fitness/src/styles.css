@@ -1,0 +1,204 @@
+:root {
+  font-family: "Arial Black", "Segoe UI", sans-serif;
+  color: #1a1a1a;
+  background: #fff3ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(239, 68, 68, 0.18), transparent 24%),
+    #fff3ef;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1120px, calc(100vw - 36px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 243, 239, 0.92);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.topbar .wrap,
+.heroGrid,
+.buttonRow,
+.grid3,
+.twoCol,
+.transformGrid,
+.instaGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.topbar .wrap {
+  min-height: 76px;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.hero,
+.section {
+  padding: 36px 0;
+}
+
+.heroGrid,
+.twoCol {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  font: 700 0.8rem "Segoe UI", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 12px 0 16px;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 5.6rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.lead,
+p,
+span {
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.7;
+  color: #5f5e61;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font: 700 1rem "Segoe UI", sans-serif;
+}
+
+.primaryButton {
+  background: #ef4444;
+  color: white;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.heroPhoto,
+.card,
+.priceCard,
+.transformCard,
+.instaGrid div {
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(60, 32, 32, 0.12);
+}
+
+.heroPhoto {
+  min-height: 460px;
+  background:
+    radial-gradient(circle at 68% 26%, #fca5a5 0 14%, transparent 14%),
+    radial-gradient(circle at 32% 74%, #fdba74 0 18%, transparent 18%),
+    linear-gradient(145deg, #f8d7cd, #fff);
+}
+
+.card,
+.priceCard {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.priceCard strong {
+  display: block;
+  font-size: 2rem;
+}
+
+.transformGrid,
+.instaGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.transformCard,
+.instaGrid div {
+  min-height: 190px;
+}
+
+.before {
+  background: linear-gradient(145deg, #fcd34d, #fde68a);
+}
+
+.after {
+  background: linear-gradient(145deg, #fb7185, #ef4444);
+}
+
+.instaGrid div:nth-child(1) {
+  background: #ef4444;
+}
+
+.instaGrid div:nth-child(2) {
+  background: #f59e0b;
+}
+
+.instaGrid div:nth-child(3) {
+  background: #fb7185;
+}
+
+.instaGrid div:nth-child(4) {
+  background: #fdba74;
+}
+
+@media (max-width: 900px) {
+  .topbar .wrap,
+  .heroGrid,
+  .grid3,
+  .twoCol,
+  .transformGrid,
+  .instaGrid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+}

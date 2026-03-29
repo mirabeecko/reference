@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chalupa Na Mechu | Pronájem v Jizerských horách</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        --accent: #46624e;
+        --accent-2: #a47b4e;
+        --bg: #f1ece3;
+        --surface: rgba(255, 255, 255, 0.82);
+        --text: #243029;
+        --muted: #5f685e;
+      }
+    </style>
+  </head>
+  <body class="serif">
+    <header class="site-header">
+      <div class="page-shell">
+        <a class="brand" href="index.html">Chalupa Na Mechu</a>
+        <nav class="nav">
+          <a href="#galerie">Galerie</a>
+          <a href="#vybaveni">Vybavení</a>
+          <a href="#rezervace">Rezervace</a>
+        </nav>
+        <a class="cta" href="#rezervace">Zkontrolovat termín</a>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="page-shell hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Jizerské hory, 8 hostů, sauna</span>
+            <h1>Víkend, který voní dřevem, kávou a klidem.</h1>
+            <p class="lead">Stylově zrekonstruovaná chalupa s výhledem do lesa. Ideální na rodinný pobyt, workation i pomalé ráno s knihou u kamen.</p>
+            <div class="button-row">
+              <a class="cta" href="#rezervace">Rezervační formulář</a>
+              <a class="cta-secondary" href="#tipy">Tipy na výlety</a>
+            </div>
+          </div>
+          <div class="visual">
+            <img src="assets/apartman-hero.svg" alt="Interiér horské chalupy" />
+          </div>
+        </div>
+      </section>
+      <section id="galerie">
+        <div class="page-shell">
+          <div class="section-heading">
+            <span class="eyebrow">Fotogalerie</span>
+            <h2>Místa, kde chcete zpomalit</h2>
+          </div>
+          <div class="gallery-grid">
+            <img src="assets/apartman-room-1.svg" alt="Obývací pokoj s výhledem" />
+            <img src="assets/apartman-room-2.svg" alt="Ložnice v přírodních tónech" />
+            <img src="assets/apartman-room-3.svg" alt="Terasa s posezením" />
+          </div>
+        </div>
+      </section>
+      <section id="vybaveni">
+        <div class="page-shell section-grid">
+          <div class="panel">
+            <h3>Vybavení</h3>
+            <div class="tag-row" style="margin-top:18px">
+              <span class="tag">Wi-Fi</span>
+              <span class="tag">Kávovar</span>
+              <span class="tag">Parkování</span>
+              <span class="tag">Sauna</span>
+              <span class="tag">Krby</span>
+              <span class="tag">Kolárna</span>
+            </div>
+          </div>
+          <div class="weather-card" id="tipy">
+            <h3>Počasí a výlety</h3>
+            <div class="weather-grid">
+              <div class="metric"><strong>So</strong><span>12 °C, slunečno</span></div>
+              <div class="metric"><strong>Ne</strong><span>10 °C, jasno</span></div>
+              <div class="metric"><strong>Po</strong><span>8 °C, déšť</span></div>
+            </div>
+            <p>Tipy: Protržená přehrada, rozhledna Bramberk, Jizerka, cyklotrasa na Hrabětice.</p>
+          </div>
+        </div>
+      </section>
+      <section id="rezervace">
+        <div class="page-shell">
+          <div class="section-heading">
+            <span class="eyebrow">Rezervace</span>
+            <h2>Pošlete nezávaznou poptávku</h2>
+          </div>
+          <div class="card-grid">
+            <div class="info-card"><h3>Termín</h3><p>12.-15. června nebo dle domluvy, min. 2 noci.</p></div>
+            <div class="info-card"><h3>Hosté</h3><p>2-8 osob, vhodné pro rodiny i menší týmový pobyt.</p></div>
+            <div class="info-card"><h3>Kontakt</h3><p>rezervace@chalupanamechu.cz<br />+420 733 222 111</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="page-shell footer-row">
+        <div><strong>Chalupa Na Mechu</strong><p>Bedřichov, self check-in, parkování u objektu.</p></div>
+        <a class="cta" href="mailto:rezervace@chalupanamechu.cz">Poptat pobyt</a>
+      </div>
+    </footer>
+  </body>
+</html>
