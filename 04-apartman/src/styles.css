@@ -56,14 +56,14 @@ nav {
   display: flex;
   gap: 18px;
   font-family: "Segoe UI", sans-serif;
+  overflow-x: auto;
 }
 
 .brand,
 .eyebrow,
 .primaryButton,
 .secondaryButton,
-.tag,
-.inputMock {
+.tag {
   font-family: "Segoe UI", sans-serif;
 }
 
@@ -188,7 +188,6 @@ p {
 }
 
 .tag,
-.inputMock,
 .weatherRow div {
   border-radius: 18px;
   background: #f7f2ea;
@@ -202,6 +201,33 @@ p {
 
 .formGrid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formGrid label {
+  display: grid;
+  gap: 8px;
+  font: 600 0.95rem "Segoe UI", sans-serif;
+  color: #445047;
+}
+
+.formGrid input,
+.formGrid textarea {
+  width: 100%;
+  border: 1px solid rgba(36, 49, 40, 0.12);
+  border-radius: 18px;
+  padding: 16px;
+  font: inherit;
+  background: #f7f2ea;
+}
+
+.formGrid small,
+.successMessage {
+  font: 500 0.9rem "Segoe UI", sans-serif;
+  color: #9a4e39;
+}
+
+.successMessage {
+  color: #46624e;
 }
 
 .wide {
@@ -219,7 +245,7 @@ p {
     grid-template-columns: 1fr;
   }
 
-  nav {
-    display: none;
+  .topbar .wrap {
+    grid-template-columns: 1fr;
   }
 }

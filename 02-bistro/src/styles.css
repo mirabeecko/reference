@@ -57,6 +57,7 @@ button {
 nav {
   display: flex;
   gap: 18px;
+  overflow-x: auto;
 }
 
 .brand,
@@ -88,6 +89,18 @@ h3 {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+}
+
+.filterRow {
+  grid-template-columns: repeat(5, max-content);
+  overflow-x: auto;
+}
+
+.filterRow .isActive {
+  background: linear-gradient(135deg, #f59e0b, #ffd166);
+  color: #111111;
 }
 
 h1,
@@ -203,7 +216,7 @@ p {
     grid-template-columns: 1fr;
   }
 
-  nav {
-    display: none;
+  .topbar .wrap {
+    grid-template-columns: 1fr;
   }
 }

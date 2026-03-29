@@ -53,6 +53,7 @@ nav {
   display: flex;
   gap: 18px;
   font-family: "Segoe UI", sans-serif;
+  overflow-x: auto;
 }
 
 .primaryButton,
@@ -172,6 +173,52 @@ li,
   background: rgba(255, 255, 255, 0.76);
 }
 
+.formGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formGrid label {
+  display: grid;
+  gap: 8px;
+  font: 600 0.95rem "Segoe UI", sans-serif;
+  color: #324255;
+}
+
+.formGrid input,
+.formGrid textarea {
+  width: 100%;
+  border: 1px solid rgba(16, 32, 51, 0.12);
+  border-radius: 18px;
+  padding: 14px 16px;
+  font: inherit;
+  background: #fbfcfe;
+}
+
+.checkbox {
+  grid-template-columns: 20px 1fr;
+  align-items: start;
+}
+
+.checkbox input {
+  margin-top: 3px;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.formGrid small,
+.successMessage {
+  font: 500 0.9rem "Segoe UI", sans-serif;
+  color: #9c4b4b;
+}
+
+.successMessage {
+  color: #335c44;
+}
+
 .teamVisual {
   min-height: 320px;
   background:
@@ -203,7 +250,11 @@ li,
     grid-template-columns: 1fr;
   }
 
-  nav {
-    display: none;
+  .topbar .wrap,
+  .heroGrid,
+  .grid3,
+  .twoCol,
+  .formGrid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const benefits = [
   "Silný headline s jediným cílem: prodej",
   "Výhody produktu s důrazem na čitelnost",
@@ -10,7 +12,32 @@ const reviews = [
   "Konečně landing page, která vede k jedné jasné akci.",
 ];
 
+const initialForm = {
+  email: "",
+  payment: "Stripe",
+};
+
 export default function App() {
+  const [form, setForm] = useState(initialForm);
+  const [error, setError] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      setError("Zadejte platný email pro zaslání platebního odkazu.");
+      setSubmitted(false);
+      return;
+    }
+
+    const payload = { ...form, createdAt: new Date().toISOString() };
+    const stored = JSON.parse(localStorage.getItem("product_orders") || "[]");
+    localStorage.setItem("product_orders", JSON.stringify([...stored, payload]));
+    setError("");
+    setSubmitted(true);
+    setForm(initialForm);
+  }
+
   return (
     <div className="site">
       <header className="topbar">
@@ -82,18 +109,40 @@ export default function App() {
               <h2>Jedna nabídka, jedno rozhodnutí</h2>
               <p>Okamžitý přístup ke kurzu, PDF e-book a aktualizace po 12 měsíců.</p>
             </div>
-            <div className="priceBox">
+            <form className="priceBox" onSubmit={handleSubmit} noValidate>
               <strong>1 490 Kč</strong>
               <span>Jednorázově</span>
+              <label>
+                Email pro zaslání platebního odkazu
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={(event) => {
+                    setForm((current) => ({ ...current, email: event.target.value }));
+                    setError("");
+                  }}
+                  placeholder="vas@email.cz"
+                />
+              </label>
+              <label>
+                Preferovaná platba
+                <select
+                  name="payment"
+                  value={form.payment}
+                  onChange={(event) => setForm((current) => ({ ...current, payment: event.target.value }))}
+                >
+                  <option>Stripe</option>
+                  <option>PayPal</option>
+                </select>
+              </label>
               <div className="buttonRow">
-                <a className="primaryButton" href="https://stripe.com/">
-                  Stripe
-                </a>
-                <a className="secondaryButton" href="https://paypal.com/">
-                  PayPal
-                </a>
+                <button className="primaryButton" type="submit">
+                  Získat platební odkaz
+                </button>
               </div>
-            </div>
+              {error ? <p className="errorMessage">{error}</p> : null}
+              {submitted ? <p className="successMessage">Objednávka byla v demu zachycena a připravena pro napojení platební brány.</p> : null}
+            </form>
           </div>
         </section>
       </main>

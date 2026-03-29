@@ -1,6 +1,49 @@
+import { useState } from "react";
+
 const fields = ["Obchodní právo", "Nemovitosti", "Pracovní právo"];
 
+const initialForm = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  summary: "",
+  consent: false,
+};
+
 export default function App() {
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    setForm((current) => ({ ...current, [name]: type === "checkbox" ? checked : value }));
+    setErrors((current) => ({ ...current, [name]: "" }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const nextErrors = {};
+    if (!form.name.trim()) nextErrors.name = "Doplňte jméno.";
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = "Zadejte platný email.";
+    if (form.summary.trim().length < 20) nextErrors.summary = "Stručně popište případ alespoň jednou větou.";
+    if (!form.consent) nextErrors.consent = "Je potřeba potvrdit souhlas se zpracováním.";
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitted(false);
+      return;
+    }
+
+    const payload = { ...form, createdAt: new Date().toISOString() };
+    const stored = JSON.parse(localStorage.getItem("law_leads") || "[]");
+    localStorage.setItem("law_leads", JSON.stringify([...stored, payload]));
+    setSubmitted(true);
+    setForm(initialForm);
+  }
+
   return (
     <div className="site">
       <header className="topbar">
@@ -74,15 +117,46 @@ export default function App() {
 
         <section id="kontakt" className="section">
           <div className="wrap twoCol">
-            <article className="card">
+            <form className="card" onSubmit={handleSubmit} noValidate>
               <span className="eyebrow">Kontaktní formulář</span>
-              <h2>Jaké údaje od klienta potřebujeme</h2>
-              <ul>
-                <li>Jméno a společnost</li>
-                <li>Email a telefon</li>
-                <li>Stručný popis případu</li>
-              </ul>
-            </article>
+              <h2>Pošlete stručnou poptávku</h2>
+              <div className="formGrid">
+                <label>
+                  Jméno
+                  <input name="name" value={form.name} onChange={handleChange} placeholder="Vaše jméno" />
+                  {errors.name ? <small>{errors.name}</small> : null}
+                </label>
+                <label>
+                  Společnost
+                  <input name="company" value={form.company} onChange={handleChange} placeholder="Volitelné" />
+                </label>
+                <label>
+                  Email
+                  <input name="email" value={form.email} onChange={handleChange} placeholder="vas@email.cz" />
+                  {errors.email ? <small>{errors.email}</small> : null}
+                </label>
+                <label>
+                  Telefon
+                  <input name="phone" value={form.phone} onChange={handleChange} placeholder="+420..." />
+                </label>
+                <label className="wide">
+                  Stručný popis případu
+                  <textarea name="summary" value={form.summary} onChange={handleChange} rows="4" placeholder="Smlouva, spor, pracovní vztah, nemovitost..." />
+                  {errors.summary ? <small>{errors.summary}</small> : null}
+                </label>
+                <label className="checkbox wide">
+                  <input name="consent" type="checkbox" checked={form.consent} onChange={handleChange} />
+                  Souhlasím se zpracováním údajů za účelem odpovědi na poptávku.
+                </label>
+                {errors.consent ? <small className="wide">{errors.consent}</small> : null}
+              </div>
+              <div className="buttonRow">
+                <button className="primaryButton" type="submit">
+                  Odeslat poptávku
+                </button>
+              </div>
+              {submitted ? <p className="successMessage">Poptávka byla v demu validována a uložena lokálně.</p> : null}
+            </form>
             <article className="card">
               <span className="eyebrow">Mapa a adresa</span>
               <h2>Pařížská 21, Praha 1</h2>

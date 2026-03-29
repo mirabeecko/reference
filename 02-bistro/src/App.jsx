@@ -1,7 +1,10 @@
+import { useMemo, useState } from "react";
+
 const menu = [
   { name: "Smash Bun", price: "245 Kč", tag: "Top seller" },
   { name: "Gochujang Bowl", price: "219 Kč", tag: "Vegetarian" },
   { name: "Basque Cheesecake", price: "119 Kč", tag: "Sweet finish" },
+  { name: "Lunch Taco", price: "189 Kč", tag: "Dnes" },
 ];
 
 const openingHours = [
@@ -12,6 +15,15 @@ const openingHours = [
 ];
 
 export default function App() {
+  const [activeFilter, setActiveFilter] = useState("Vše");
+  const filteredMenu = useMemo(() => {
+    if (activeFilter === "Vše") {
+      return menu;
+    }
+
+    return menu.filter((item) => item.tag === activeFilter);
+  }, [activeFilter]);
+
   return (
     <div className="site">
       <header className="topbar">
@@ -64,13 +76,19 @@ export default function App() {
             <span className="eyebrow">Interaktivní jídelní lístek</span>
             <h2>Vyber si podle chuti</h2>
             <div className="filterRow">
-              <button type="button">Dnes</button>
-              <button type="button">Vegetarian</button>
-              <button type="button">Top seller</button>
-              <button type="button">Sweet finish</button>
+              {["Vše", "Dnes", "Vegetarian", "Top seller", "Sweet finish"].map((filter) => (
+                <button
+                  type="button"
+                  key={filter}
+                  className={activeFilter === filter ? "isActive" : ""}
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {filter}
+                </button>
+              ))}
             </div>
             <div className="grid3">
-              {menu.map((item) => (
+              {filteredMenu.map((item) => (
                 <article className="menuCard" key={item.name}>
                   <span className="tag">{item.tag}</span>
                   <h3>{item.name}</h3>
@@ -90,6 +108,8 @@ export default function App() {
               <a
                 className="mapCard"
                 href="https://maps.google.com/?q=Krizikova+74+Praha"
+                target="_blank"
+                rel="noreferrer"
               >
                 Google Maps proklik
               </a>

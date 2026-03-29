@@ -1,10 +1,49 @@
+import { useState } from "react";
+
 const soldProjects = [
   "Vinohrady Residence",
   "Garden Villas",
   "Lofty Letná",
 ];
 
+const initialForm = {
+  type: "",
+  layout: "",
+  contact: "",
+  note: "",
+};
+
 export default function App() {
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+    setErrors((current) => ({ ...current, [name]: "" }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const nextErrors = {};
+    if (!form.type.trim()) nextErrors.type = "Doplňte typ nebo lokalitu.";
+    if (!form.layout.trim()) nextErrors.layout = "Doplňte dispozici nebo stav.";
+    if (form.contact.trim().length < 6) nextErrors.contact = "Doplňte kontakt.";
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitted(false);
+      return;
+    }
+
+    const payload = { ...form, createdAt: new Date().toISOString() };
+    const stored = JSON.parse(localStorage.getItem("realtor_leads") || "[]");
+    localStorage.setItem("realtor_leads", JSON.stringify([...stored, payload]));
+    setSubmitted(true);
+    setForm(initialForm);
+  }
+
   return (
     <div className="site">
       <header className="topbar">
@@ -46,15 +85,37 @@ export default function App() {
 
         <section id="odhad" className="section">
           <div className="wrap twoCol">
-            <article className="card">
+            <form className="card" onSubmit={handleSubmit} noValidate>
               <span className="eyebrow">Formulář pro bezplatný odhad</span>
               <h2>Chci prodat / odhadnout cenu nemovitosti</h2>
               <div className="formGrid">
-                <div className="inputMock">Typ a lokalita</div>
-                <div className="inputMock">Dispozice a stav</div>
-                <div className="inputMock wide">Kontakt a poznámka</div>
+                <label>
+                  Typ a lokalita
+                  <input name="type" value={form.type} onChange={handleChange} placeholder="Byt 3+kk, Praha 7" />
+                  {errors.type ? <small>{errors.type}</small> : null}
+                </label>
+                <label>
+                  Dispozice a stav
+                  <input name="layout" value={form.layout} onChange={handleChange} placeholder="Po rekonstrukci, 82 m2" />
+                  {errors.layout ? <small>{errors.layout}</small> : null}
+                </label>
+                <label className="wide">
+                  Kontakt a poznámka
+                  <textarea name="note" value={form.note} onChange={handleChange} rows="4" placeholder="Telefon, email, čas pro zavolání, doplňující informace..." />
+                </label>
+                <label className="wide">
+                  Kontakt
+                  <input name="contact" value={form.contact} onChange={handleChange} placeholder="telefon nebo email" />
+                  {errors.contact ? <small>{errors.contact}</small> : null}
+                </label>
               </div>
-            </article>
+              <div className="buttonRow">
+                <button className="primaryButton" type="submit">
+                  Odeslat k bezplatnému odhadu
+                </button>
+              </div>
+              {submitted ? <p className="successMessage">Lead na odhad byl v demu uložen lokálně a formulář prošel kontrolou.</p> : null}
+            </form>
             <article className="stats">
               <div className="statCard">
                 <strong>73 dní</strong>

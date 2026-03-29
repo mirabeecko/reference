@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const schedule = [
   ["Pondělí 7:00", "Morning Mobility"],
   ["Středa 18:00", "Strength Flow"],
@@ -10,7 +12,45 @@ const pricing = [
   ["3 900 Kč", "Plán na míru"],
 ];
 
+const initialForm = {
+  name: "",
+  email: "",
+  goal: "",
+  lesson: "",
+};
+
 export default function App() {
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+    setErrors((current) => ({ ...current, [name]: "" }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const nextErrors = {};
+    if (!form.name.trim()) nextErrors.name = "Doplň jméno.";
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = "Zadej platný email.";
+    if (!form.lesson.trim()) nextErrors.lesson = "Vyber lekci nebo plán.";
+    if (form.goal.trim().length < 10) nextErrors.goal = "Napiš stručně svůj cíl.";
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setSubmitted(false);
+      return;
+    }
+
+    const payload = { ...form, createdAt: new Date().toISOString() };
+    const stored = JSON.parse(localStorage.getItem("fitness_leads") || "[]");
+    localStorage.setItem("fitness_leads", JSON.stringify([...stored, payload]));
+    setSubmitted(true);
+    setForm(initialForm);
+  }
+
   return (
     <div className="site">
       <header className="topbar">
@@ -21,7 +61,7 @@ export default function App() {
             <a href="#cenik">Ceník</a>
             <a href="#promeny">Před a po</a>
           </nav>
-          <a className="primaryButton" href="#rozvrh">
+          <a className="primaryButton" href="#registrace">
             Přihlásit se na lekci
           </a>
         </div>
@@ -38,7 +78,7 @@ export default function App() {
                 proměnami klientů a prostorem pro Instagram feed.
               </p>
               <div className="buttonRow">
-                <a className="primaryButton" href="#cenik">
+                <a className="primaryButton" href="#registrace">
                   Koupit plán
                 </a>
                 <a className="secondaryButton" href="#rozvrh">
@@ -74,6 +114,43 @@ export default function App() {
                 <span>{title}</span>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="registrace" className="section">
+          <div className="wrap registrationCard">
+            <div>
+              <span className="eyebrow">Přihlášení / plán</span>
+              <h2>Pošli poptávku na lekci nebo tréninkový plán</h2>
+            </div>
+            <form className="formGrid" onSubmit={handleSubmit} noValidate>
+              <label>
+                Jméno
+                <input name="name" value={form.name} onChange={handleChange} placeholder="Vaše jméno" />
+                {errors.name ? <small>{errors.name}</small> : null}
+              </label>
+              <label>
+                Email
+                <input name="email" value={form.email} onChange={handleChange} placeholder="vas@email.cz" />
+                {errors.email ? <small>{errors.email}</small> : null}
+              </label>
+              <label>
+                Lekce / plán
+                <input name="lesson" value={form.lesson} onChange={handleChange} placeholder="Např. Strength Flow / plán na míru" />
+                {errors.lesson ? <small>{errors.lesson}</small> : null}
+              </label>
+              <label>
+                Cíl
+                <textarea name="goal" value={form.goal} onChange={handleChange} rows="4" placeholder="Co chceš zlepšit: síla, mobilita, redukce, pravidelnost..." />
+                {errors.goal ? <small>{errors.goal}</small> : null}
+              </label>
+              <div className="buttonRow">
+                <button className="primaryButton" type="submit">
+                  Odeslat přihlášku
+                </button>
+              </div>
+              {submitted ? <p className="successMessage">Přihláška byla v demu ověřena a uložena lokálně.</p> : null}
+            </form>
           </div>
         </section>
 
